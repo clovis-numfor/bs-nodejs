@@ -1,4 +1,5 @@
 var webdriver = require('selenium-webdriver');
+const config =  require('./config.js');
 
 // Input capabilities
 var capabilities = {
