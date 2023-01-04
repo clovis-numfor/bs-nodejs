@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "set NODE_ENV=dev && node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start" : "http-server -p 8099 &",
+    "dev-test": "set NODE_ENV=dev && node index.js",
+    "qa-test": "set NODE_ENV=dev && node index.js",
+    "prod-test": "set NODE_ENV=dev && node index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +16,6 @@
     "http-server": "^14.1.1"
   },
   "dependencies": {
-    "dotenv": "^16.0.3",
     "selenium-webdriver": "^4.7.1"
   }
 }
