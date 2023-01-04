@@ -7,6 +7,9 @@ on:
       - main
 env:
   PROJECT_NAME: bs-nodejs
+  DEV_EMAIL_LIST: saifmaruf09@gmail.com
+  QA_EMAIL_LIST: clovisnclovis@gmail.com
+  STACKHOLDER_EMAIL_LIST: afsadiazaman@gmail.com
 
 jobs:
   browserstack-job:
@@ -78,6 +81,6 @@ jobs:
           # email body as text
           body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
           # comma-separated string, send email to
-          to: clovisnclovis@gmail.com,saifmaruf09@gmail.com
+          to: "{{ env.DEV_EMAIL_LIST }},{{ env.QA_EMAIL_LIST }},{{ env.STACKHOLDER_EMAIL_LIST }}"
           # from email name
           from: Github Action
