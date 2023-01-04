@@ -6,7 +6,7 @@ on:
       - qa
       - main
 env:
-  PROJECT_NAME: bs-nodejs
+  PROJECT_NAME: bs-nodejs-2
 
 jobs:
   browserstack-job:
