@@ -6,7 +6,7 @@ on:
       - qa
       - main
 env:
-  PROJECT_NAME: bs-nodejs-2
+  PROJECT_NAME: bs-nodejs
 
 jobs:
   browserstack-job:
@@ -15,13 +15,31 @@ jobs:
     steps:
       - name: 'Checkout the repository'
         uses: actions/checkout@v2
-      
+
+      - name: Set env to dev
+        if: endsWith(github.ref, '/dev')
+        run: |
+          echo "ENVIRONMENT=dev" >> $GITHUB_ENV
+          echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+
+      - name: Set env to qa
+        if: contains(github.ref, '/qa')
+        run: |
+          echo "ENVIRONMENT=qa" >> $GITHUB_ENV
+          echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+
+      - name: Set env to prod
+        if: endsWith(github.ref, '/main')
+        run: |
+          echo "ENVIRONMENT=prod" >> $GITHUB_ENV
+          echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+
       - name: 'BrowserStack Env Setup'  # Invokes the setup-env action
         uses: browserstack/github-actions/setup-env@master
         with:
           username:  ${{ secrets.BROWSERSTACK_USERNAME }}
           access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-          build-name: 'BUILD_INFO'
+          build-name: ${{ env.ENVIRONMENT }}-${{ env.SHORT_SHA }}
           project-name: ${{ env.PROJECT_NAME }}
 
       - name: 'BrowserStack Local Tunnel Setup'  # Invokes the setup-local action
@@ -38,7 +56,7 @@ jobs:
         run: npm start
       
       - name: 'Running test on BrowserStack'  # Invokes the actual test script that would run on BrowserStack browsers
-        run: npm run dev-test  # See sample test script above
+        run: npm run ${{ env.ENVIRONMENT }}-test  # See sample test script above
       
       - name: 'BrowserStackLocal Stop'  # Terminating the BrowserStackLocal tunnel connection
         uses: browserstack/github-actions/setup-local@master
