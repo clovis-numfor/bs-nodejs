@@ -81,6 +81,6 @@ jobs:
           # email body as text
           body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
           # comma-separated string, send email to
-          to: "{{ env.DEV_EMAIL_LIST }},{{ env.QA_EMAIL_LIST }},{{ env.STACKHOLDER_EMAIL_LIST }}"
+          to: "${{ env.DEV_EMAIL_LIST }},${{ env.QA_EMAIL_LIST }},${{ env.STACKHOLDER_EMAIL_LIST }}"
           # from email name
           from: Github Action
