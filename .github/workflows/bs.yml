@@ -1,9 +1,10 @@
 name: 'BrowserStack Test'
 on:
   push:
-    - dev
-    - qa
-    - main
+    branches:
+      - dev
+      - qa
+      - main
 env:
   PROJECT_NAME: bs-nodejs
 
