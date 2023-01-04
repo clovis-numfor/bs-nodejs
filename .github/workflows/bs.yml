@@ -23,7 +23,7 @@ jobs:
       - name: 'Running application under test'
         run: npm start
       - name: 'Running test on BrowserStack'  # Invokes the actual test script that would run on BrowserStack browsers
-        run: npm run dev  # See sample test script above
+        run: npm run dev-test  # See sample test script above
       - name: 'BrowserStackLocal Stop'  # Terminating the BrowserStackLocal tunnel connection
         uses: browserstack/github-actions/setup-local@master
         with:
