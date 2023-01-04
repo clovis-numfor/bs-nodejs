@@ -39,7 +39,7 @@ jobs:
         with:
           username:  ${{ secrets.BROWSERSTACK_USERNAME }}
           access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-          build-name: ${{ env.ENVIRONMENT }}-${{ env.SHORT_SHA }}
+          build-name: "[ ${{ env.ENVIRONMENT }} ] Commit: ${{ env.SHORT_SHA }}"
           project-name: ${{ env.PROJECT_NAME }}
 
       - name: 'BrowserStack Local Tunnel Setup'  # Invokes the setup-local action
