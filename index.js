@@ -24,6 +24,7 @@ var driver = new webdriver.Builder().
   withCapabilities(capabilities).
   build();
 
+  
 // HTTP Server should be running on 8099 port of GitHub runner
 driver.get('http://localhost:8099').then(function () {
   driver.getTitle().then(function (title) {
